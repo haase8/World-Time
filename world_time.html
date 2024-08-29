@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Time</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        select, button {
+            padding: 10px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Check the Current Time</h1>
+    <p>Select a country:</p>
+    <select id="countrySelect">
+        <option value="America/New_York">United States</option>
+        <option value="Europe/London">United Kingdom</option>
+        <option value="Europe/Paris">France</option>
+        <option value="Asia/Tokyo">Japan</option>
+        <option value="Australia/Sydney">Australia</option>
+        <option value="Asia/Calcutta">India</option>
+    </select>
+    <br>
+    <button onclick="showTime()">Show Time</button>
+    <h2 id="timeDisplay"></h2>
+
+    <script>
+        function showTime() {
+            const selectedTimeZone = document.getElementById('countrySelect').value;
+            const date = new Date();
+            const options = { timeZone: selectedTimeZone, hour: '2-digit', minute: '2-digit', second: '2-digit' };
+            const timeString = new Intl.DateTimeFormat('en-US', options).format(date);
+
+            document.getElementById('timeDisplay').innerText = `Current time in ${selectedTimeZone.replace('_', ' ')}: ${timeString}`;
+        }
+    </script>
+</body>
+</html>
